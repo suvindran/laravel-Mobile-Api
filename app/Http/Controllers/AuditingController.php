@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Auditing;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AuditingController extends Controller
 {
@@ -35,7 +38,23 @@ class AuditingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $auditing = new Auditing;
+        $auditing->aadhar_card = $request->aadhar_card;
+        $auditing->pan_card = $request->pan_card;
+        $auditing->insurence_policy = $request->insurence_policy;
+        $auditing->gst_no = $request->gst_no;
+        $auditing->others = $request->others;
+        $auditing->commands = $request->commands;
+        $auditing->user_id = $request->user_id;
+
+        $auditing->save();
+
+        return response()->json([
+            'status' => 1,
+            'data' => [],
+            'message' => 'Auditing creates Susscessfully'
+        ], 201);
     }
 
     /**
@@ -44,9 +63,15 @@ class AuditingController extends Controller
      * @param  \App\Auditing  $auditing
      * @return \Illuminate\Http\Response
      */
-    public function show(Auditing $auditing)
+    public function show(Request $request,Auditing $auditing)
     {
-        //
+        $user = Auditing::find($request->user_id);
+
+        return response()->json([
+            'status' => 1,
+            'data' => [$user],
+            'message' => 'Auditing creates Susscessfully'
+        ], 201);
     }
 
     /**

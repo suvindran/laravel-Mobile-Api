@@ -15,11 +15,14 @@ class CreateAuditingsTable extends Migration
     {
         Schema::create('auditings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('aadhar_card');
             $table->string('pan_card');
+            $table->string('insurence_policy');
             $table->string('gst_no');
+            $table->string('others');
             $table->string('commands');
-            $table->foreign('user_fk_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

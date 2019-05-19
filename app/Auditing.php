@@ -11,6 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 class Auditing extends Model
 {
     protected $fillable = [
-        'aadhar_card', 'pan_card', 'gst_no', 'commands',
+        'aadhar_card', 'pan_card', 'insurence_policy', 'gst_no', 'others', 'commands',
     ];
 }

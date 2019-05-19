@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('auditing/list', 'AuditingController@show');
+
 Route::group([
     'prefix' => 'mobile'
 ], function () {
@@ -26,6 +28,7 @@ Route::group([
     Route::group([
       'middleware' => 'auth:api'
     ], function() {
+        Route::post('auditing', 'AuditingController@store');
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
